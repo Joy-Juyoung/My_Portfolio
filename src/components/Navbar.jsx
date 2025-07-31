@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
+import { ThemeToggle } from "./ThemeToggle";
 
 const navItems = [
   { name: "Home", href: "#hero" },
@@ -35,7 +36,7 @@ export const Navbar = () => {
           href="#hero"
         >
           <span className="relative z-10">
-            <span className="text-glow text-foreground"> PedroTech </span>{" "}
+            <span className="text-glow text-foreground"> Juyoung's </span>{" "}
             Portfolio
           </span>
         </a>
@@ -51,21 +52,32 @@ export const Navbar = () => {
               {item.name}
             </a>
           ))}
+
+          <ThemeToggle />
         </div>
 
         {/* mobile nav */}
-
-        <button
+        {/* <button
           onClick={() => setIsMenuOpen((prev) => !prev)}
           className="md:hidden p-2 text-foreground z-50"
           aria-label={isMenuOpen ? "Close Menu" : "Open Menu"}
         >
-          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}{" "}
+        </button> */}
+        <div className="md:hidden flex items-center gap-3 z-50">
+          <ThemeToggle />
+          <button
+            onClick={() => setIsMenuOpen((prev) => !prev)}
+            className="p-2 text-foreground"
+            aria-label={isMenuOpen ? "Close Menu" : "Open Menu"}
+          >
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
 
         <div
           className={cn(
-            "fixed inset-0 bg-background/95 backdrop-blur-md z-40 flex flex-col items-center justify-center",
+            "fixed inset-0 bg-background/95 backdroup-blur-md z-40 flex flex-col items-center justify-center",
             "transition-all duration-300 md:hidden",
             isMenuOpen
               ? "opacity-100 pointer-events-auto"

@@ -12,19 +12,19 @@ const navItems = [
 ];
 
 export const Navbar = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
+  // const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
 
-  useEffect(() => {
-    const handleScroll = () => {
-      // setIsScrolled(window.screenY > 10);
-      setIsScrolled(window.scrollY > 10);
-    };
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     // setIsScrolled(window.screenY > 10);
+  //     setIsScrolled(window.scrollY > 10);
+  //   };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  //   window.addEventListener("scroll", handleScroll);
+  //   return () => window.removeEventListener("scroll", handleScroll);
+  // }, []);
 
   // 스크롤 or 클릭에 따라 navItem 위치 인식해서 스타일 변경에 적용.
   useEffect(() => {
@@ -41,9 +41,9 @@ export const Navbar = () => {
         });
       },
       {
-        rootMargin: "-40% 0px -40% 0px",
-        threshold: 0.1,
-        // rootMargin: "-20% 0px -60% 0px",
+        // rootMargin: "-40% 0px -40% 0px",
+        rootMargin: "-20% 0px -60% 0px",
+        threshold: 0.05,
         // threshold: 0.2,
       }
     );
@@ -56,11 +56,25 @@ export const Navbar = () => {
     };
   }, []);
 
+  useEffect(() => {
+    if (isMenuOpen) {
+      // 메뉴 열 때: 현재 스크롤 유지 + body 고정
+      document.body.style.overflow = "hidden";
+    } else {
+      // 닫을 때 body 다시 풀어주기
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMenuOpen]);
+
   return (
     <nav
       className={cn(
-        "fixed w-full z-40 transition-all duration-300 bg-background px-4",
-        isScrolled ? "py-3 bg-background/60 backdrop-blur-md shadow-xs" : "py-5"
+        "fixed w-full z-40 transition-all duration-300 bg-background px-4 py-5"
+        // isScrolled ? "py-3 bg-background/60 backdrop-blur-md shadow-xs" : "py-5"
       )}
     >
       <div className="container flex items-center justify-between mx-auto max-w-5xl">
@@ -75,7 +89,7 @@ export const Navbar = () => {
         </a>
 
         {/* desktop nav */}
-        <div className="hidden md:flex space-x-8">
+        <div className="hidden md:flex space-x-8 items-center">
           {navItems.map((item, key) => (
             <a
               key={key}
@@ -99,42 +113,45 @@ export const Navbar = () => {
           <ThemeToggle />
           <button
             onClick={() => setIsMenuOpen((prev) => !prev)}
-            className="p-2 text-foreground"
+            className="p-2 text-foreground cursor-pointer"
             aria-label={isMenuOpen ? "Close Menu" : "Open Menu"}
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
 
-        <div
-          className={cn(
-            "fixed inset-0 bg-background/95 backdrop-blur-md z-40 flex flex-col items-center justify-center",
-            "transition-all duration-300 md:hidden",
-            isMenuOpen
-              ? "opacity-100 pointer-events-auto"
-              : "opacity-0 pointer-events-none"
-          )}
-        >
-          <div className="flex flex-col space-y-8 text-xl">
-            {navItems.map((item, key) => (
-              <a
-                key={key}
-                href={item.href}
-                className={cn(
-                  "transition-colors duration-300",
-                  activeSection === item.id
-                    ? "text-primary"
-                    : "text-foreground/80 hover:text-primary"
-                )}
-                onClick={() => {
-                  setIsMenuOpen(false);
-                }}
-              >
-                {item.name}
-              </a>
-            ))}
+        {isMenuOpen && (
+          <div
+            className={cn(
+              "fixed inset-0 bg-background/95 backdrop-blur-md z-40 flex flex-col items-center justify-center",
+              "transition-all duration-300 md:hidden",
+              isMenuOpen
+                ? "opacity-100 pointer-events-auto "
+                : "opacity-0 pointer-events-none "
+            )}
+            // className="fixed inset-0 bg-background/95 backdrop-blur-md z-40 flex flex-col items-center justify-center transition-all duration-300 md:hidden"
+          >
+            <div className="flex flex-col space-y-8 text-xl">
+              {navItems.map((item, key) => (
+                <a
+                  key={key}
+                  href={item.href}
+                  className={cn(
+                    "transition-colors duration-300",
+                    activeSection === item.id
+                      ? "text-primary"
+                      : "text-foreground/80 hover:text-primary"
+                  )}
+                  onClick={() => {
+                    setIsMenuOpen(false);
+                  }}
+                >
+                  {item.name}
+                </a>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </nav>
   );

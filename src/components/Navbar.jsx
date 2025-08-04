@@ -12,21 +12,9 @@ const navItems = [
 ];
 
 export const Navbar = () => {
-  // const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
 
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     // setIsScrolled(window.screenY > 10);
-  //     setIsScrolled(window.scrollY > 10);
-  //   };
-
-  //   window.addEventListener("scroll", handleScroll);
-  //   return () => window.removeEventListener("scroll", handleScroll);
-  // }, []);
-
-  // 스크롤 or 클릭에 따라 navItem 위치 인식해서 스타일 변경에 적용.
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -35,16 +23,13 @@ export const Navbar = () => {
             const id = entry.target.getAttribute("id");
             setActiveSection(id);
 
-            // 주소창 hash도 변경
             window.history.replaceState(null, "", `#${id}`);
           }
         });
       },
       {
-        // rootMargin: "-40% 0px -40% 0px",
         rootMargin: "-20% 0px -60% 0px",
         threshold: 0.05,
-        // threshold: 0.2,
       }
     );
 
@@ -58,10 +43,8 @@ export const Navbar = () => {
 
   useEffect(() => {
     if (isMenuOpen) {
-      // 메뉴 열 때: 현재 스크롤 유지 + body 고정
       document.body.style.overflow = "hidden";
     } else {
-      // 닫을 때 body 다시 풀어주기
       document.body.style.overflow = "";
     }
 
@@ -71,12 +54,7 @@ export const Navbar = () => {
   }, [isMenuOpen]);
 
   return (
-    <nav
-      className={cn(
-        "fixed w-full z-40 transition-all duration-300 bg-background px-4 py-5"
-        // isScrolled ? "py-3 bg-background/60 backdrop-blur-md shadow-xs" : "py-5"
-      )}
-    >
+    <nav className="fixed w-full z-40 transition-all duration-300 bg-background px-4 py-5">
       <div className="container flex items-center justify-between mx-auto max-w-5xl">
         <a
           className="text-xl font-bold text-primary flex items-center"
@@ -129,7 +107,6 @@ export const Navbar = () => {
                 ? "opacity-100 pointer-events-auto "
                 : "opacity-0 pointer-events-none "
             )}
-            // className="fixed inset-0 bg-background/95 backdrop-blur-md z-40 flex flex-col items-center justify-center transition-all duration-300 md:hidden"
           >
             <div className="flex flex-col space-y-8 text-xl">
               {navItems.map((item, key) => (

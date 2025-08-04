@@ -13,7 +13,7 @@ const projects = [
   },
   {
     id: 2,
-    title: "Minimate",
+    title: "Mini Mate",
     description:
       "Interactive analytics dashboard with data visualization and filtering capabilities.",
     image: "/projects/project2.png",

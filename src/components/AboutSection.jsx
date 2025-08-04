@@ -21,8 +21,9 @@ export const AboutSection = () => {
             </p>
 
             <p className="text-muted-foreground">
-              I'm passionate about creating elegant solutions to complex
-              problems, and I'm constantly learning new technologies and
+              {/*ESLint의 react/no-unescaped-entities 룰 때문에 발생. i'm => &apos; */}
+              I&apos;m passionate about creating elegant solutions to complex
+              problems, and I&apos;m constantly learning new technologies and
               techniques to stay at the forefront of the ever-evolving web
               landscape.
             </p>

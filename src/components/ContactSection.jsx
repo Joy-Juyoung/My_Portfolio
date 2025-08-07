@@ -1,4 +1,4 @@
-import { Instagram, Linkedin, Mail, MapPin, Phone, Send } from "lucide-react";
+import { Linkedin, Mail, MapPin, Send } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
@@ -28,42 +28,43 @@ export const ContactSection = () => {
         </h2>
 
         <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-          Have a project in mind or want to collaborate? Feel free to reach out.
           I&apos;m always open to discussing new opportunities.
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          <div className="space-y-8 flex flex-col items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 ">
+          {/* <div className="flex flex-cols items-center justify-center text-left"> */}
+          <div className="md:px-8 sm:px-16">
             <h3 className="text-2xl font-semibold mb-6 pt-8">
               Contact Information
             </h3>
 
-            <div className="space-y-6">
-              <div className="flex items-start space-x-4">
+            <div className="space-y-8 md:space-y-16 text-left">
+              <div className="flex items-start space-x-4 ">
                 <div className="p-3 rounded-full bg-primary/10">
                   <Mail className="h-6 w-6 text-primary" />{" "}
                 </div>
-                <div>
-                  <h4 className="font-medium"> Email</h4>
+                <div className="max-w-full sm:max-w-sm break-words whitespace-normal ">
+                  <h4 className="font-medium text-primary">Email</h4>
                   <a
-                    href="mailto:hello@gmail.com"
-                    className="text-muted-foreground hover:text-primary transition-colors"
+                    href="mailto:joy.lee9994@gmail.com"
+                    className="text-muted-foreground hover:underline transition-colors "
                   >
-                    hello@gmail.com
+                    joy.lee9994@gmail.com
                   </a>
                 </div>
               </div>
               <div className="flex items-start space-x-4">
                 <div className="p-3 rounded-full bg-primary/10">
-                  <Phone className="h-6 w-6 text-primary" />{" "}
+                  <Linkedin className="h-6 w-6 text-primary" />{" "}
                 </div>
-                <div>
-                  <h4 className="font-medium"> Phone</h4>
+                <div className="max-w-full sm:max-w-sm break-words whitespace-normal">
+                  <h4 className="font-medium text-primary">LinkedIn</h4>
                   <a
-                    href="tel:+11234567890"
-                    className="text-muted-foreground hover:text-primary transition-colors"
+                    href="https://www.linkedin.com/in/lee728/"
+                    target="_blank"
+                    className="text-muted-foreground hover:underline transition-colors  break-words"
                   >
-                    +1 (123) 456-7890
+                    https://www.linkedin.com/in/lee728/
                   </a>
                 </div>
               </div>
@@ -71,24 +72,16 @@ export const ContactSection = () => {
                 <div className="p-3 rounded-full bg-primary/10">
                   <MapPin className="h-6 w-6 text-primary" />{" "}
                 </div>
-                <div>
-                  <h4 className="font-medium"> Location</h4>
-                  <a className="text-muted-foreground hover:text-primary transition-colors">
+                <div className="max-w-full sm:max-w-sm break-words whitespace-normal">
+                  <h4 className="font-medium text-primary"> Location</h4>
+                  <a
+                    className="text-muted-foreground hover:underline transition-colors "
+                    href="https://www.google.com/maps/place/alberta_calgary"
+                    target="_blank"
+                  >
                     Calgary, AB, Canada
                   </a>
                 </div>
-              </div>
-            </div>
-
-            <div className="pt-8">
-              <h4 className="font-medium mb-4"> Connect With Me</h4>
-              <div className="flex space-x-4 justify-center">
-                <a href="#" target="_blank">
-                  <Linkedin />
-                </a>
-                <a href="#" target="_blank">
-                  <Instagram />
-                </a>
               </div>
             </div>
           </div>
@@ -97,7 +90,7 @@ export const ContactSection = () => {
             className="bg-card p-8 rounded-lg shadow-xs"
             onSubmit={handleSubmit}
           >
-            <h3 className="text-2xl font-semibold mb-6"> Send a Message</h3>
+            <h3 className="text-2xl font-semibold mb-6">Send a Message</h3>
 
             <form className="space-y-6">
               <div>

@@ -1,45 +1,61 @@
 import { ArrowRight, ExternalLink, Github } from "lucide-react";
+import project1 from "@/assets/project1.png";
+import project2 from "@/assets/project2.png";
+import project3 from "@/assets/project3.png";
+import project4 from "@/assets/project4.png";
+import project5 from "@/assets/project5.png";
 
 // Project Samples
 const projects = [
   {
     id: 1,
     title: "Next Stop",
-    description: "A beautiful landing page app using React and Tailwind.",
-    image: "/projects/project1.png",
+    description: "Personalized travel planning tool powered by OpenAI.",
+    // image: "../assets/project1.png",
+    image: project1,
     tags: ["NextJS", "TailwindCSS", "NodeJS", "Firebase", "OpenAI"],
     demoUrl: "#",
-    githubUrl: "#",
+    githubUrl: "https://github.com/Joy-Juyoung/NextStop-AITravelWeb",
   },
   {
     id: 2,
     title: "Mini Mate",
     description:
-      "Interactive analytics dashboard with data visualization and filtering capabilities.",
-    image: "/projects/project2.png",
+      "Social platform enabling users to create and customize personal mini-homepages with purchasable elements.",
+    image: project2,
     tags: ["React", "TailwindCSS", "Redux-toolkit", "SwaggerAPI"],
     demoUrl: "#",
-    githubUrl: "#",
+    githubUrl: "https://github.com/Joy-Juyoung/Minimate-Cy-Proj",
   },
   {
     id: 3,
     title: "Blank House",
     description:
-      "Full-featured e-commerce platform with user authentication and payment processing.",
-    image: "/projects/project3.png",
+      "Responsive accommodation booking platform for guests to search, select, and reserve properties.",
+    image: project3,
     tags: ["React", "Styled-components", "Redux-toolkit", "SwaggerAPI"],
     demoUrl: "#",
-    githubUrl: "#",
+    githubUrl: "https://github.com/Joy-Juyoung/BlankHouse",
   },
   {
-    id: 3,
+    id: 4,
     title: "Blank Closet",
     description:
-      "Full-featured e-commerce platform with user authentication and payment processing.",
-    image: "/projects/project3.png",
+      "Full-featured e-commerce platform with with dedicated customer and admin interfaces for seamless product and order management.",
+    image: project4,
     tags: ["React", "Styled-components", "SwaggerAPI"],
     demoUrl: "#",
-    githubUrl: "#",
+    githubUrl: "https://github.com/Joy-Juyoung/Blank-Closet",
+  },
+  {
+    id: 5,
+    title: "Project Management Web Platform",
+    description:
+      "Project management web platform featuring team overview, team creation, project - creation, file sharing, and video chat functionalities.",
+    image: project5,
+    tags: ["React", "Styled-components", "GraphQL"],
+    demoUrl: "#",
+    githubUrl: "https://github.com/Joy-Juyoung/ProjectMenagement_Tools",
   },
 ];
 
@@ -65,7 +81,7 @@ export const ProjectsSection = () => {
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 "
                 />
               </div>
 
@@ -89,7 +105,8 @@ export const ProjectsSection = () => {
                   <div className="flex space-x-3">
                     <a
                       href={project.demoUrl}
-                      target="_blank"
+                      // target="_blank"
+                      onClick={(e) => e.preventDefault()}
                       className="text-foreground/80 hover:text-primary transition-colors duration-300"
                     >
                       <ExternalLink size={20} />
@@ -110,8 +127,8 @@ export const ProjectsSection = () => {
         <div className="text-center mt-12">
           <a
             className="cosmic-button w-fit flex items-center mx-auto gap-2"
-            target="_blank"
             href="https://github.com/Joy-Juyoung"
+            target="_blank"
           >
             Check My Github <ArrowRight size={16} />
           </a>
